@@ -20,7 +20,6 @@ steps:
       - 'us-central1' # You can change this to your preferred region
       - '--port'
       - '8080'
-      - '--allow-unauthenticated'
 
 images:
   - 'gcr.io/$PROJECT_ID/virtual-paralegal-app'
