@@ -14,12 +14,22 @@ steps:
       - 'run'
       - 'deploy'
       - 'virtual-paralegal-service'
-      - '--image'
-      - 'gcr.io/$PROJECT_ID/virtual-paralegal-app'
-      - '--region'
-      - 'us-central1' # You can change this to your preferred region
-      - '--port'
-      - '8080'
+      - '--image=gcr.io/$PROJECT_ID/virtual-paralegal-app'
+      - '--region=us-central1'
+      - '--port=8080'
+      - '--allow-unauthenticated'   # ← ADD THIS
+
+  # 4. Explicitly set IAM policy for public access
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'services'
+      - 'add-iam-policy-binding'
+      - 'virtual-paralegal-service'
+      - '--region=us-central1'
+      - '--member=allUsers'
+      - '--role=roles/run.invoker'
 
 images:
   - 'gcr.io/$PROJECT_ID/virtual-paralegal-app'
