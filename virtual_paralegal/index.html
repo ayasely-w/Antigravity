@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Paralegal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">VP</div>
+                <h2>VirtualParalegal</h2>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">Dashboard</a>
+                <a href="#" class="nav-item">Clause Library</a>
+                <a href="#" class="nav-item">Settings</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Document Analysis</h1>
+                <div class="document-selector">
+                    <select id="docSelect">
+                        <option value="standard">Gold Standard NDA</option>
+                        <option value="lowRisk" selected>Vendor NDA - ACME Corp (Sample 1)</option>
+                        <option value="highRisk">Partner NDA - Globex (Sample 2)</option>
+                    </select>
+                    <button class="btn-primary" id="analyzeBtn">Analyze Document</button>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <!-- Left Column -->
+                <div class="col-left">
+                    <section class="card instant-summary">
+                        <h3>Instant Summarization</h3>
+                        <div class="summary-content" id="summaryContent">
+                            <!-- Populated by JS -->
+                        </div>
+                    </section>
+
+                    <section class="card risk-heatmapping">
+                        <h3>Risk Heatmapping</h3>
+                        <div class="risk-widget" id="riskWidget">
+                            <!-- Populated by JS -->
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-right">
+                    <section class="card gap-analysis">
+                        <div class="gap-header">
+                            <h3>Gold Standard Gap Analysis</h3>
+                            <div class="gap-legend">
+                                <span class="badge badge-success">Aligned</span>
+                                <span class="badge badge-warning">Unfavorable</span>
+                                <span class="badge badge-danger">Missing/Deal-breaker</span>
+                            </div>
+                        </div>
+                        <div class="clause-list" id="clauseList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Modal for Audit-Ready Citations -->
+            <div class="modal-overlay" id="citationModal">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h3>Source Text Citation</h3>
+                        <button class="close-btn" id="closeModal">&times;</button>
+                    </div>
+                    <div class="modal-body" id="modalBody">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
