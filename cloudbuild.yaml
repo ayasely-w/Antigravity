@@ -1,0 +1,26 @@
+steps:
+  # 1. Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/virtual-paralegal-app', './virtual_paralegal']
+
+  # 2. Push the image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/virtual-paralegal-app']
+
+  # 3. Deploy the image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'virtual-paralegal-service'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/virtual-paralegal-app'
+      - '--region'
+      - 'us-central1' # You can change this to your preferred region
+      - '--port'
+      - '8080'
+      - '--allow-unauthenticated'
+
+images:
+  - 'gcr.io/$PROJECT_ID/virtual-paralegal-app'
