@@ -105,7 +105,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
 .top-bar h1 {
@@ -147,24 +147,58 @@ select {
     background-color: var(--accent-blue-hover);
 }
 
-/* Dashboard Grid */
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 24px;
+/* Tabs Navigation */
+.tabs-container {
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
 }
 
-.col-left {
+.tabs-nav {
     display: flex;
-    flex-direction: column;
-    gap: 24px;
+    gap: 8px;
+    overflow-x: auto;
 }
 
-.col-right {
-    display: flex;
-    flex-direction: column;
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    font-family: var(--font-main);
 }
 
+.tab-btn:hover {
+    color: var(--text-primary);
+}
+
+.tab-btn.active {
+    color: var(--accent-blue);
+    border-bottom-color: var(--accent-blue);
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+/* Tab Panes */
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Card Styles */
 .card {
     background-color: var(--bg-card);
     border: 1px solid var(--border);
@@ -182,9 +216,24 @@ select {
     padding-bottom: 12px;
 }
 
-/* Instant Summary */
+.tab-subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+/* Instant Summary Layout */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
 .summary-item {
-    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.02);
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
 }
 
 .summary-label {
@@ -201,13 +250,23 @@ select {
     font-weight: 500;
 }
 
-/* Risk Widget */
+/* Risk Widget Layout */
+.risk-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    align-items: flex-start;
+}
+
 .risk-widget {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     padding: 20px 0;
+    background-color: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    border: 1px solid var(--border);
 }
 
 .risk-circle {
@@ -234,6 +293,35 @@ select {
     font-size: 0.875rem;
     color: var(--text-secondary);
 }
+
+.risk-breakdown h3 {
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+}
+
+.breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.breakdown-item:last-child {
+    border-bottom: none;
+}
+
+.breakdown-reason {
+    color: var(--text-secondary);
+}
+
+.breakdown-score {
+    font-weight: bold;
+}
+
+.breakdown-score.danger { color: var(--danger); }
+.breakdown-score.warning { color: var(--warning); }
+.breakdown-score.success { color: var(--success); }
 
 /* Gap Analysis */
 .gap-header {
@@ -366,6 +454,8 @@ select {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
     transform: translateY(20px);
     transition: transform 0.3s ease;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .modal-overlay.active .modal {

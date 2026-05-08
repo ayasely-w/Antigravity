@@ -16,7 +16,7 @@
                 <h2>VirtualParalegal</h2>
             </div>
             <nav class="nav-menu">
-                <a href="#" class="nav-item active">Dashboard</a>
+                <a href="#" class="nav-item active">Analysis Portal</a>
                 <a href="#" class="nav-item">Clause Library</a>
                 <a href="#" class="nav-item">Settings</a>
             </nav>
@@ -36,40 +36,82 @@
                 </div>
             </header>
 
-            <div class="dashboard-grid">
-                <!-- Left Column -->
-                <div class="col-left">
-                    <section class="card instant-summary">
-                        <h3>Instant Summarization</h3>
-                        <div class="summary-content" id="summaryContent">
+            <!-- Tabs Navigation -->
+            <div class="tabs-container">
+                <nav class="tabs-nav">
+                    <button class="tab-btn active" data-tab="tab-summary">Instant Summarization</button>
+                    <button class="tab-btn" data-tab="tab-gap">Gold Standard Gap Analysis</button>
+                    <button class="tab-btn" data-tab="tab-risk">Risk Heatmapping</button>
+                    <button class="tab-btn" data-tab="tab-suggestions">Smart Clause Suggestions</button>
+                    <button class="tab-btn" data-tab="tab-citations">Audit-Ready Citations</button>
+                </nav>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="tab-content-container">
+                <!-- Summarization Tab -->
+                <section id="tab-summary" class="tab-pane active">
+                    <div class="card">
+                        <h3>Key Document Metadata</h3>
+                        <div class="summary-grid" id="summaryContent">
                             <!-- Populated by JS -->
                         </div>
-                    </section>
+                    </div>
+                </section>
 
-                    <section class="card risk-heatmapping">
-                        <h3>Risk Heatmapping</h3>
-                        <div class="risk-widget" id="riskWidget">
-                            <!-- Populated by JS -->
-                        </div>
-                    </section>
-                </div>
-
-                <!-- Right Column -->
-                <div class="col-right">
-                    <section class="card gap-analysis">
+                <!-- Gap Analysis Tab -->
+                <section id="tab-gap" class="tab-pane">
+                    <div class="card">
                         <div class="gap-header">
-                            <h3>Gold Standard Gap Analysis</h3>
+                            <h3>Clause Comparison vs Gold Standard</h3>
                             <div class="gap-legend">
                                 <span class="badge badge-success">Aligned</span>
                                 <span class="badge badge-warning">Unfavorable</span>
                                 <span class="badge badge-danger">Missing/Deal-breaker</span>
                             </div>
                         </div>
-                        <div class="clause-list" id="clauseList">
+                        <div class="clause-list" id="gapClauseList">
                             <!-- Populated by JS -->
                         </div>
-                    </section>
-                </div>
+                    </div>
+                </section>
+
+                <!-- Risk Heatmap Tab -->
+                <section id="tab-risk" class="tab-pane">
+                    <div class="card risk-card">
+                        <div class="risk-widget" id="riskWidget">
+                            <!-- Populated by JS -->
+                        </div>
+                        <div class="risk-breakdown">
+                            <h3>Risk Score Breakdown</h3>
+                            <div id="riskBreakdownContent">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Smart Suggestions Tab -->
+                <section id="tab-suggestions" class="tab-pane">
+                    <div class="card">
+                        <h3>Recommended Fallback Language</h3>
+                        <p class="tab-subtitle">The following clauses deviate from your Gold Standard. Use these pre-approved fallbacks.</p>
+                        <div class="clause-list" id="suggestionsList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Audit-Ready Citations Tab -->
+                <section id="tab-citations" class="tab-pane">
+                    <div class="card">
+                        <h3>Source Text Verification</h3>
+                        <p class="tab-subtitle">Review the exact text extraction for every analyzed clause.</p>
+                        <div class="clause-list" id="citationsList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </section>
             </div>
 
             <!-- Modal for Audit-Ready Citations -->
